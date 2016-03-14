@@ -15,7 +15,7 @@ public class Hero : MonoBehaviour {
 	[SerializeField]
 	private float _shieldLevel = 1;
 	//Weapon fields
-	public Weapon[] weapons = new Weapon[2];
+	public Weapon[] weapons;
 	public bool ________________;
 	public Bounds bounds;
 

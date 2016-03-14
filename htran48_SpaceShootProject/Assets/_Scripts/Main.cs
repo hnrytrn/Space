@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ public class Main : MonoBehaviour {
 
 	public WeaponType[] activeWeaponTypes;
 	public float enemySpawnRate;//delay between enemy spawns
+	public Text scoreGT;
 
 	void Awake () {
 		S = this;
@@ -44,6 +46,11 @@ public class Main : MonoBehaviour {
 	}
 
 	void Start() {
+		//set score
+		GameObject scoreGO = GameObject.Find("Score");
+		scoreGT = scoreGO.GetComponent<Text> ();
+		scoreGT.text = "0";
+
 		activeWeaponTypes = new WeaponType[weaponDefinitions.Length];
 		for (int i = 0; i < weaponDefinitions.Length; i++) {
 			activeWeaponTypes [i] = weaponDefinitions [i].type;
@@ -86,5 +93,10 @@ public class Main : MonoBehaviour {
 
 			pu.transform.position = e.transform.position;
 		}
+
+		//add to score
+		int score = int.Parse(scoreGT.text);
+		score += 100;
+		scoreGT.text = score.ToString();
 	}
 }
